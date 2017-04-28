@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const port = 8080;
+app.get('/', function(req, res){
+  res.send('Sample');
+});
 
-app.use(express.static('public'))
-
-app.listen(port)
+app.listen(3000);
