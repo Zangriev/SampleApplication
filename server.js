@@ -1,15 +1,19 @@
 var http = require('http');
-var sockjs = require('sockjs');
+var config = require('./config').config;
+var sockjs_app = require('./sockjs_app');
 
-var echo = sockjs.createServer({ sockjs_url: 'http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js' });
-echo.on('connection', function(conn) {
-    conn.on('data', function(message) {
-        conn.write(message);
-    });
-    conn.on('close', function() {});
-});
 
 var server = http.createServer();
-echo.installHandlers(server, {prefix:'/echo'});
-server.listen(3000, '0.0.0.0');
+server.addListener('request', function(req, res) {
+    res.setHeader('content-type', 'text/plain');
+    res.writeHead(404);
+    res.end('404 - Nothing here (via sockjs-node test_server)');
+});
+server.addListener('upgrade', function(req, res){
+    res.end();
+});
 
+sockjs_app.install(config.server_opts, server);
+
+console.log(" [*] Listening on", config.host + ':' + config.port);
+server.listen(config.port, config.host);
