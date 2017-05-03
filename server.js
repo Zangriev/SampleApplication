@@ -1,19 +1,11 @@
+// Load the http module to create an http server.
 var http = require('http');
-var config = require('./config').config;
-var sockjs_app = require('./sockjs_app');
 
-
-var server = http.createServer();
-server.addListener('request', function(req, res) {
-    res.setHeader('content-type', 'text/plain');
-    res.writeHead(404);
-    res.end('404 - Nothing here (via sockjs-node test_server)');
-});
-server.addListener('upgrade', function(req, res){
-    res.end();
+// Configure our HTTP server to respond with Hello World to all requests.
+var server = http.createServer(function (request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.end("Hello World\n");
 });
 
-sockjs_app.install(config.server_opts, server);
-
-console.log(" [*] Listening on", config.host + ':' + config.port);
-server.listen(config.port, config.host);
+// Last, but not least, listen on port 8080
+server.listen(8080);
