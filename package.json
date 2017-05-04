@@ -3,21 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-    "dateformat": "^2.0.0",
-    "react-router": "^3.0.2",
-    "react-scripts": "0.9.0"
+    "dateformat": "^2.0.0"
   },
   "dependencies": {
-    "express": "^4.15.2",
-    "react": "^15.3.1",
-    "react-dom": "^15.3.1",
-    "react-router-scroll": "^0.4.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "express": "^4.15.2"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Zangriev/SampleApplication/issues"
   },
-  "homepage": "https://github.com/Zangriev/SampleApplication#readme"
+  "homepage": "https://github.com/Zangriev/SampleApplication#readme",
+  "scripts": {
+    "start": "node server.js"
+  }
 }
