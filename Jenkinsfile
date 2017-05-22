@@ -1,14 +1,10 @@
 node {
-
     stage 'Checkout'
-    def branch = env.BRANCH_NAME
-    echo "current branch is ${branch}"
-    checkout scm
+        def branch = env.BRANCH_NAME
+        git branch: 'GIT_BRANCH', credentialsId: '1', url: 'GIT_URL'
 
-	try {
-	    stage 'Build'
-		notifyStarted()
-	    sh "npm install"
-	    sh "npm start"
-	} 
+    stage 'Build'
+        notifyStarted()
+        sh "npm install"
+        sh "npm start"
 }
