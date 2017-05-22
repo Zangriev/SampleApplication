@@ -1,7 +1,7 @@
 FROM readytalk/nodejs
 
 ADD entrypoint.sh /usr/bin/entrypoint.sh
-VOLUME ["'$(pwd)':/app"]
+VOLUME ["./:/app"]
 WORKDIR /app
 RUN curl -sL https://deb.nodesource.com/setup_6.x  | bash 
 RUN apt-get install -y apt-utils && apt-get -y upgrade
