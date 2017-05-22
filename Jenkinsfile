@@ -1,12 +1,14 @@
 node {
-    stage "Prepare environment"
-        checkout scm
-        def environment  = docker.build('jenkins-node').inside {
-    }
 
-    stage "Test URL"
-        sh 'sh test.sh'
-        
-    stage "Cleanup"
-        deleteDir()
+    stage 'Checkout'
+    def branch = env.BRANCH_NAME
+    echo "current branch is ${branch}"
+    checkout scm
+
+	try {
+	    stage 'Build'
+		notifyStarted()
+	    sh "npm install"
+	    sh "npm start"
+	} 
 }
