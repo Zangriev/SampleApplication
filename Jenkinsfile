@@ -1,6 +1,6 @@
 node {
     stage 'Checkout'
-        git branch: '${GIT_BRANCH}', credentialsId: '1', url: ''
+        git branch: '${env.GIT_BRANCH}', credentialsId: '1', url: '${env.GIT_URL}'
 
     stage 'Build'
         notifyStarted()
