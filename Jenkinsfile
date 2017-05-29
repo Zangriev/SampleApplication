@@ -1,7 +1,8 @@
 node {
     stage 'Checkout'
         checkout scm
-        sh 'echo $pwd'
+        sh 'pwd'
+        sh 'ls -ls'
     stage 'Build'
         notifyStarted()
         sh "npm install"
