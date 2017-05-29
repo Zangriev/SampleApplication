@@ -1,7 +1,7 @@
 node {
     stage 'Checkout'
-        git branch: '${env.GIT_BRANCH}', credentialsId: '1', url: '${env.GIT_URL}'
-
+        checkout scm
+        sh 'echo $pwd'
     stage 'Build'
         notifyStarted()
         sh "npm install"
